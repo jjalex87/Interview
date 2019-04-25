@@ -67,6 +67,21 @@ int delete_node(node_t **head, node_t *node)
     }
 }
 
+void reverse(node_t** head) {
+   node_t* prev   = NULL;
+   node_t* current = *head;
+   node_t* next;
+	
+   while (current != NULL) {
+      next  = current->next;
+      current->next = prev;   
+      prev = current;
+      current = next;
+   }
+	
+   *head = prev;
+}
+
 void main()
 {
     node_t *head = NULL;
@@ -89,15 +104,8 @@ void main()
     //delete_node(&head, node3);
 
     //print_list(head);
-
-    curr_node = head;
-    while (curr_node != NULL) {
-        next_node = curr_node->next;
-        curr_node->next = prev_node;
-        prev_node = curr_node;
-        curr_node = next_node;
-    }
-    head = prev_node;
+    
+    reverse(&head);
     printf("Reversed List:\n");
     print_list(head);
 
