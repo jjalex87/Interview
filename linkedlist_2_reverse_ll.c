@@ -6,6 +6,7 @@ typedef struct node_t_ {
     struct node_t_ *next;
 } node_t;
 
+/* Insert new node at the end of the list */
 node_t* insert_node(node_t *head, int data)
 {
     node_t *node = head;
@@ -29,6 +30,18 @@ node_t* insert_node(node_t *head, int data)
     }
 
     return (node);
+}
+
+/* Insert new node at the beginning of the list */
+node_t* insert_first(node_t *head, int data) {
+   node_t *node;
+	
+   node = malloc(sizeof(node_t));
+   if (node != NULL) {
+       node->data = data;
+       node->next = head;
+   }
+   return (node);
 }
 
 void print_list(node_t *head)
