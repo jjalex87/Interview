@@ -55,29 +55,33 @@ void print_list(node_t *head)
 
 int delete_node(node_t **head, node_t *node)
 {
-    node_t *temp_node = *head;
+    node_t *curr_node = *head;
     node_t *prev_node = *head;
-    node_t *next_node;
     int data;
-    int count = 0;
+	
+	if (head == NULL || *head == NULL) {
+		printf("Invalid arg or list is empty!");
+		return -1;
+	}
 
-    while (temp_node != NULL) {
-        if (temp_node == node) {
-            next_node = node->next;
-            data = node->data;
-            free(node);
-            break;
-        } else {
-            prev_node = temp_node;
-            temp_node = temp_node->next;
-            count++;
-        }
-    }
-    if (count == 0) {
-        *head = next_node;
-    } else {
-        prev_node->next = next_node;
-    }
+	while (curr_node != node) {
+		prev_node = curr_node;
+		curr_node = curr_node->next
+		if (curr_node == NULL) {
+			printf("Node to be deleted not found, exiting!");
+			return -1;
+		}
+	}
+	
+	if (curr_node == *head) {
+		*head = curr_node->next;
+	} else {
+		prev_node->next = curr_node->next;
+	}
+	data = curr_node->data;
+	curr_node->next = NULL;
+	free(curr_node);
+	return (data);
 }
 
 void reverse(node_t** head) {
