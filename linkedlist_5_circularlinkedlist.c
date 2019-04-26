@@ -35,9 +35,26 @@ int length() {
    return length;
 }
 
+/* getLastNode()
+ * return pointer to last node of the list so that its next pointer
+ * can point to the new head node in case of insertion/deletion */
+struct node *getLastNode()
+{
+    struct node *current = head;
+    //if list is empty
+   if(head == NULL) {
+      return NULL;
+   }
+   while(current->next != NULL) {
+      current = current->next;   
+   }
+	
+   return current;
+}
+
 //insert link at the first location
 void insertFirst(int key, int data) {
-
+   struct node *last_node = getLastNode();
    //create a link
    struct node *link = (struct node*) malloc(sizeof(struct node));
    link->key = key;
@@ -52,12 +69,13 @@ void insertFirst(int key, int data) {
 		
       //point first to new first node
       head = link;
+      last_node->next = head;
    }    
 }
 
 //delete first item
 struct node * deleteFirst() {
-
+   struct node *last_node = getLastNode();
    //save reference to first link
    struct node *tempLink = head;
 	
@@ -68,6 +86,7 @@ struct node * deleteFirst() {
 
    //mark next to first link as first 
    head = head->next;
+   last_node->next = head;
 	
    //return the deleted link
    return tempLink;
