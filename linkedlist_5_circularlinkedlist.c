@@ -99,14 +99,13 @@ void printList() {
    printf("\n[ ");
 	
    //start from the beginning
-   if(head != NULL) {
-	
-      while(ptr->next != ptr) {     
-         printf("(%d,%d) ",ptr->key,ptr->data);
-         ptr = ptr->next;
-      }
-   }
-	
+   while (ptr != NULL) {
+	   printf("(%d,%d) ",ptr->key,ptr->data);
+	   if (ptr->next == head) {
+		   break;
+	   }
+	   ptr = ptr->next;
+   }	
    printf(" ]");
 }
 
