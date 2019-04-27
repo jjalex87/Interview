@@ -77,6 +77,10 @@ int dequeue()
         front = front->next;
         temp->next = NULL;
         free(temp);
+        
+        if (front == NULL) {
+            rear = NULL;
+        }
     } else {
         printf("\nERROR: Queue is empty!");
     }
