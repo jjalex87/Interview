@@ -10,7 +10,12 @@ int interpol_search(int *arr, int low, int high, int data)
     
     while (low <= high) {
         comparisons++;
-        mid = low + (((double)((high - low)/(arr[high] - arr[low]))) * (data - arr[low]));
+        /* IMPORTANT: Take care of braces as it makes a difference in 
+         * computation. (double)x != (double)(x) */
+        mid = low + (((double)(high - low)/(arr[high] - arr[low])) * (data - arr[low]));
+        printf("high :%d arr[high] :%d\n", high, arr[high]);
+        printf("low  :%d arr[low]  :%d\n", low, arr[low]);
+        printf("mid:%d\n", mid);
         if (data == arr[mid]) {
             index = mid;
             break;
@@ -40,5 +45,11 @@ int main()
 }
 
 Output:
-Comparisons made: 6                                                                                                                              
+high :9 arr[high] :99                                                                                                                          
+low  :0 arr[low]  :33                                                                                                                          
+mid:6                                                                                                                                          
+high :5 arr[high] :78                                                                                                                          
+low  :0 arr[low]  :33                                                                                                                          
+mid:5                                                                                                                                          
+Comparisons made: 2                                                                                                                            
 Element found at index: 5
