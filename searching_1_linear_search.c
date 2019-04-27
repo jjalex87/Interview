@@ -1,63 +1,45 @@
 /******************************************************************************
-
                             Online C Compiler.
                 Code, Compile, Run and Debug C program online.
 Write your code in this editor and press "Run" button to compile and execute it.
-
 *******************************************************************************/
 
 #include <stdio.h>
 
-int find(int *arr, int size, int data)
+#define ARR_MAX_SIZE    10
+
+int linear_search(int *arr, int size, int data)
 {
-    int i = 0;
+    int i = 0, comparisons = 0;
+    int index = -1;
     
     for (i = 0; i < size; i++) {
+        comparisons++;
         if (arr[i] == data) {
-            return (i);
+            index = i;
+            break;
         }
     }
-    return (-1);
+    
+    printf("Comparisons made: %d\n", comparisons);
+    return (index);
 }
 
 int main()
 {
-    int size, *arr, i, data;
-    printf("\nEnter array size: ");
-    scanf("%d", &size);
-    printf("\nEnter array elements (press enter after each element):\n");
+    int arr[ARR_MAX_SIZE] = {33, 45, 48, 67, 74, 78, 84, 88, 90, 99};
     
-    arr = (int *)malloc(sizeof(int) * size);
-    for (i = 0; i < size; i++) {
-        scanf("%d", &arr[i]);
-    }
+    int index = linear_search(arr, ARR_MAX_SIZE, 78);
     
-    printf("\nEnter element to search: ");
-    scanf("%d", &data);
-    
-    //find location of 1
-    int location = find(arr, size, data);
-    
-    // if element was found 
-    if(location != -1) {
-        printf("\nElement found at index: %d" ,(location));
+    if (index == -1) {
+        printf("Element not found!");
     } else {
-        printf("Element not found.");
+        printf("Element found at index: %d", index);
     }
 
     return 0;
 }
 
 Output:
-Enter array size: 5                                                                                                                              
-                                                                                                                                                 
-Enter array elements (press enter after each element):                                                                                           
-1                                                                                                                                                
-2                                                                                                                                                
-3                                                                                                                                                
-4                                                                                                                                                
-5                                                                                                                                                
-                                                                                                                                                 
-Enter element to search: 4                                                                                                                       
-                                                                                                                                                 
-Element found at index: 3  
+Comparisons made: 6                                                                                                                            
+Element found at index: 5   
