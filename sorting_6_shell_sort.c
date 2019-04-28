@@ -6,6 +6,8 @@ Shell Sort is mainly a variation of Insertion Sort.
 In insertion sort, we move elements only one position ahead. When an element has to be moved far ahead, many movements are involved. 
 The idea of shell sort is to allow exchange of far items. In shell sort, we make the array gap-sorted for a large value of gap. 
 We keep reducing the value of gap until it becomes 1. An array is said to be h-sorted if all sublists of every h’th element is sorted.
+
+Worst case time complexity is O(n2) and best case complexity is O(nlog(n)).
 */
 
 #define MAX_ARR_SIZE    7
