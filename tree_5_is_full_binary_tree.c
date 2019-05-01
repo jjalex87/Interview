@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+A full binary tree is defined as a binary tree in which all nodes have either zero or two child nodes. 
+*/
+
 typedef struct node_ {
     int data;
     struct node_ *left;
