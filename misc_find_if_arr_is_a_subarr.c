@@ -40,3 +40,17 @@ int main()
   
     return 0; 
 } 
+
+/*
+Other methods:
+Method 1 (Simple)
+Use two loops: The outer loop picks all the elements of arr2[] one by one. 
+The inner loop linearly searches for the element picked by outer loop. 
+If all elements are found then return 1, else return 0.
+
+Method 2 (Use Sorting and Binary Search)
+1) Sort arr1[] O(mLogm)
+2) For each element of arr2[], do binary search for it in sorted arr1[].
+         a) If the element is not found then return 0.
+3) If all elements are present then return 1.
+*/
