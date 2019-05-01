@@ -104,7 +104,7 @@ int get_unvisited_vertex_index(int vertex_index)
     return -1;
 }
 
-void depth_first_traversal()
+void breadth_first_traversal()
 {
     vertex_list[0]->visited = 1;
     display_vertex(0);
@@ -146,7 +146,7 @@ void main()
     display_adj_matrix();
     
     printf("Breadth first traversal:\n");
-    depth_first_traversal();
+    breadth_first_traversal();
 }
 
 Output:
