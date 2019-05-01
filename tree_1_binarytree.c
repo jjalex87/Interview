@@ -40,6 +40,63 @@ void insert_node(int data)
     }
 }
 
+void update_parent(node_t *parent, node_t *curr, node_t *new_node)
+{
+    if (parent != NULL) {
+        if (curr == root) {
+            root = new_node;
+        } else if (parent->left == curr) {
+            parent->left = new_node;
+        } else {
+            parent->right = new_node;
+        }
+    }
+}
+
+void delete_node(int data)
+{
+    node_t *curr = root;
+    node_t *parent = root;
+    
+    if (root == NULL) {
+        return;
+    }
+    
+    while (curr != NULL) {
+        if (data == curr->data) {
+            break;
+        } else if (data < curr->data) {
+            parent = curr;
+            curr = curr->left;
+        } else {
+            parent = curr;
+            curr = curr->right;
+        }
+    }
+    
+    if (curr != NULL) {
+        /* If node to be deleted is a leaf node, just free the node and set the
+         * parent's left/right pointer to NULL */
+        if (curr->left == NULL && curr->right == NULL) {
+            update_parent(parent, curr, NULL);
+        } else if (curr->right == NULL) {
+            /* Right subtree is empty*/
+            update_parent(parent, curr, curr->left);
+        } else {
+            /* Right subtree is not empty. Replace node to be deleted with the 
+             * smallest node in right subtree */
+            node_t *smallest = curr->right;
+            
+            while (smallest->left != NULL) {
+                smallest = smallest->left;
+            }
+            update_parent(parent, curr, smallest);
+            smallest->left = curr->left;
+        }
+        free(curr);
+    }
+}
+
 void inorder_traversal(node_t *root)
 {
     if (root == NULL) {
@@ -142,8 +199,26 @@ int main()
         printf("Node found: %d\n", temp->data);
     }
     
+    printf("Deleting node with value 6:\n");
+    delete_node(6);
+    printf("In-order traversal: [");
+    inorder_traversal(root);
+    printf("]\n");
+    
+    printf("Deleting node with value 2:\n");
+    delete_node(2);
+    printf("In-order traversal: [");
+    inorder_traversal(root);
+    printf("]\n");
+    
+    printf("Deleting node with value 8:\n");
+    delete_node(8);
+    printf("In-order traversal: [");
+    inorder_traversal(root);
+    printf("]\n");
+    
     return 0;
-}
+} 
 
 Output:
 Searching for node with value 9:                                                                                                                 
@@ -165,4 +240,10 @@ Post-order traversal: [2 1 5 4 7 6 3 10 9 8 ]
 Searching for node with value 9:                                                                                                                 
 Node found: 9                                                                                                                                    
 Searching for node with value 12:                                                                                                                
-Node not found!
+Node not found!                                                                                                                                  
+Deleting node with value 6:                                                                                                                      
+In-order traversal: [1 2 3 4 5 7 8 9 10 ]                                                                                                        
+Deleting node with value 2:                                                                                                                      
+In-order traversal: [1 3 4 5 7 8 9 10 ]                                                                                                          
+Deleting node with value 8:                                                                                                                      
+In-order traversal: [1 3 4 5 7 9 10 ] 
