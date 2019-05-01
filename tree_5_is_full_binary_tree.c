@@ -33,7 +33,7 @@ int is_full_binary_tree(node_t *root)
         return 0;
     }
     
-    return(is_full_binary_tree(root->left) && is_full_binary_tree(root->left));
+    return(is_full_binary_tree(root->left) && is_full_binary_tree(root->right));
 }
 
 void main()
