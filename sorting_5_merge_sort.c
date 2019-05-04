@@ -12,7 +12,6 @@ Then, merge sort combines the smaller sorted lists keeping the new list sorted t
 
 #define MAX_ARR_SIZE    7
 
-int arr[MAX_ARR_SIZE] = {4,6,3,2,1,9,7};
 int temp_arr[MAX_ARR_SIZE];
 
 void swap(int *a, int *b)
@@ -24,7 +23,7 @@ void swap(int *a, int *b)
     *b = temp;
 }
 
-void display() {
+void display(int *arr) {
    int i;
    printf("[");
 	
@@ -36,7 +35,7 @@ void display() {
    printf("]");
 }
 
-void display_range(int low, int high)
+void display_range(int *arr, int low, int high)
 {   
     int i;
     printf("[");
@@ -49,7 +48,7 @@ void display_range(int low, int high)
     printf("]");
 }
 
-void merge_list(int low, int mid, int high)
+void merge_list(int *arr, int low, int mid, int high)
 {
     int l1, l2, i;
     for(l1 = low, l2 = mid + 1, i = low; l1 <= mid && l2 <= high; i++) {
@@ -73,7 +72,7 @@ void merge_list(int low, int mid, int high)
     }
 }
 
-void merge_sort (int low, int high)
+void merge_sort (int *arr, int low, int high)
 {
     int i;
     if (low < high) {
@@ -99,13 +98,14 @@ void merge_sort (int low, int high)
 
 void main()
 {
+    int arr[MAX_ARR_SIZE] = {4,6,3,2,1,9,7};
     printf("\nGiven array: ");
-    display();
+    display(arr);
     
-    merge_sort(0, MAX_ARR_SIZE - 1);
+    merge_sort(arr, 0, MAX_ARR_SIZE - 1);
 
     printf("\nSorted array is: ");
-    display();
+    display(arr);
 }
 
 Output:
