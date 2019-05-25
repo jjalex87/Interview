@@ -8,9 +8,8 @@ typedef struct node_t_ {
     
 
 node_t *head = NULL;
-node_t *tail = NULL;
 
-node_t* insert_node(int data)
+void insert_node(int data)
 {
     node_t *node = NULL;
 
@@ -20,18 +19,15 @@ node_t* insert_node(int data)
         node->next = NULL;
     } else {
         printf("malloc failed! Cannot insert node!\n");
-        return (NULL);
+        return;
     }
 
     if (head == NULL) {
         head = node;
+    } else {
+        node->next = head;
+        head = node;
     }
-
-    if (tail != NULL) {
-        tail->next = node;
-    }
-    tail = node;
-    return (node);
 }
 
 void print_list()
@@ -50,43 +46,20 @@ void print_list()
     printf("NULL\n");
 }
 
-int delete_node(node_t *node)
+int delete_node()
 {
     node_t *curr = head;
-    node_t *prev = head;
     int data;
     
-    if (node == NULL) {
+    if (head == NULL) {
         return (-1);
     }
     
-    if (node == head) {
-        data = node->data;
-        head = head->next;
-        free(node);
-        if (head == NULL) {
-            tail = NULL;
-        }
-        return data;
-    }
-
-    while (curr != NULL && curr != node) {
-        prev = curr;
-        curr = curr->next;
-    }
-    
-    if (curr == NULL) {
-        printf("ERROR: node not found!\n");
-        return (-1);
-    } else {
-        data = curr->data;
-        prev->next = curr->next;
-        free(curr);
-        if (prev->next == NULL) {
-            tail = prev;
-        }
-        return data;
-    }
+    data = curr->data;
+    head = head->next;
+    curr->next = NULL;
+    free(curr);
+    return (data);
 }
 
 void push(int a)
@@ -96,7 +69,7 @@ void push(int a)
 
 int pop()
 {
-    int data = delete_node(tail);
+    int data = delete_node();
     if (data == -1) {
         printf("Stack is empty! Nothing to pop!\n");
     }
@@ -141,33 +114,33 @@ void main()
 }
 
 Output:
-Stack is empty! Nothing to print                                                                                                               
-Stack is empty! Nothing to pop!                                                                                                                
-200->NULL                                                                                                                                      
-200->1->NULL                                                                                                                                   
-200->1->2->NULL                                                                                                                                
-200->1->2->3->NULL                                                                                                                             
-200->1->2->3->4->NULL                                                                                                                          
-200->1->2->3->4->5->NULL                                                                                                                       
-Pop 1 Element: 5                                                                                                                               
-200->1->2->3->4->NULL                                                                                                                          
-Pop 1 Element: 4                                                                                                                               
-200->1->2->3->NULL                                                                                                                             
-200->1->2->3->6->NULL                                                                                                                          
-200->1->2->3->6->7->NULL                                                                                                                       
-200->1->2->3->6->7->8->NULL                                                                                                                    
-Pop 1 Element: 8                                                                                                                               
-200->1->2->3->6->7->NULL                                                                                                                       
-Pop 1 Element: 7                                                                                                                               
-200->1->2->3->6->NULL                                                                                                                          
-Pop 1 Element: 6                                                                                                                               
-200->1->2->3->NULL                                                                                                                             
-Pop 1 Element: 3                                                                                                                               
-200->1->2->NULL                                                                                                                                
-Pop 1 Element: 2                                                                                                                               
-200->1->NULL                                                                                                                                   
-Pop 1 Element: 1                                                                                                                               
-200->NULL                                                                                                                                      
-Pop 1 Element: 200                                                                                                                             
-Stack is empty! Nothing to print                                                                                                               
+Stack is empty! Nothing to print                                                                                                                 
+Stack is empty! Nothing to pop!                                                                                                                  
+200->NULL                                                                                                                                        
+1->200->NULL                                                                                                                                     
+2->1->200->NULL                                                                                                                                  
+3->2->1->200->NULL                                                                                                                               
+4->3->2->1->200->NULL                                                                                                                            
+5->4->3->2->1->200->NULL                                                                                                                         
+Pop 1 Element: 5                                                                                                                                 
+4->3->2->1->200->NULL                                                                                                                            
+Pop 1 Element: 4                                                                                                                                 
+3->2->1->200->NULL                                                                                                                               
+6->3->2->1->200->NULL                                                                                                                            
+7->6->3->2->1->200->NULL                                                                                                                         
+8->7->6->3->2->1->200->NULL                                                                                                                      
+Pop 1 Element: 8                                                                                                                                 
+7->6->3->2->1->200->NULL                                                                                                                         
+Pop 1 Element: 7                                                                                                                                 
+6->3->2->1->200->NULL                                                                                                                            
+Pop 1 Element: 6                                                                                                                                 
+3->2->1->200->NULL                                                                                                                               
+Pop 1 Element: 3                                                                                                                                 
+2->1->200->NULL                                                                                                                                  
+Pop 1 Element: 2                                                                                                                                 
+1->200->NULL                                                                                                                                     
+Pop 1 Element: 1                                                                                                                                 
+200->NULL                                                                                                                                        
+Pop 1 Element: 200                                                                                                                               
+Stack is empty! Nothing to print                                                                                                                 
 Stack is empty! Nothing to pop! 
