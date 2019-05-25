@@ -67,6 +67,27 @@ int delete_node(node_t **head, node_t *node)
     }
 }
 
+node_t *get_list_midpoint(node_t *head)
+{
+    node_t *mid = head, *last = head;
+    
+    if (!head) {
+        return NULL;
+    }
+    
+    while (last != NULL) {
+        last = last->next;
+        if (last == NULL) {
+            return mid;
+        }
+        last = last->next;
+        if (last != NULL) {
+            mid = mid->next;
+        }
+    }
+    return mid;
+}
+
 void main()
 {
     node_t *head = NULL;
@@ -79,7 +100,11 @@ void main()
     node3 = insert_node(head, 6);
 
     print_list(head);
-
+    
+    node1 = get_list_midpoint(head);
+    if (node1 != NULL) {
+        printf("Midpoint node of list is %p data:%d", node1, node1->data);
+    }
     delete_node(&head, head);
     //delete_node(&head, node1);
     //delete_node(&head, node2);
@@ -87,3 +112,4 @@ void main()
 
     print_list(head);
 }
+
