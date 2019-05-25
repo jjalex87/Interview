@@ -5,7 +5,6 @@ typedef struct node_t_ {
     int data;
     struct node_t_ *next;
 } node_t;
-    
 
 node_t *head = NULL;
 
