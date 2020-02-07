@@ -68,21 +68,19 @@ void convert_infix_postfix(char *infix, char *postfix)
         } else {
             if (ch == '(') {
                 push_char(ch);
+            } else if (ch == ')') {
+                while (stack[top] != '(') {
+                    postfix[j++] = pop_char();
+                }
+                pop_char();
             } else {
-                if (ch == ')') {
-                    while (stack[top] != '(') {
+                if (precedence(ch) > precedence(stack[top])) {
+                    push_char(ch);
+                } else {
+                    while (precedence(ch) <= precedence(stack[top])) {
                         postfix[j++] = pop_char();
                     }
-                    pop_char();
-                } else {
-                    if (precedence(ch) > precedence(stack[top])) {
-                        push_char(ch);
-                    } else {
-                        while (precedence(ch) <= precedence(stack[top])) {
-                            postfix[j++] = pop_char();
-                        }
-                        push_char(ch);
-                    }
+                    push_char(ch);
                 }
             }
         }
