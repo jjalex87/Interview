@@ -112,7 +112,7 @@ void main()
 {
     node_t *root = NULL;
     
-    root = create_node(2);      /*        2      */
+    root              = create_node(2);      /*        2      */
     root->left        = create_node(1);      /*      /   \    */
     root->right       = create_node(3);      /*     1     3      */
     root->left->left  = create_node(4);      /*   /   \    \  */
