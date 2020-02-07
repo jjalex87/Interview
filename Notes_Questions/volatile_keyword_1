@@ -129,6 +129,7 @@ This program will likely fail once the compiler's optimizer is enabled. Declarin
 
 [NOTE: We're not advocating use of global variables; this code uses a global because it is explaining a relationship between volatile and global variables.]
 
+
 [WARNING: Global variables shared by tasks and ISRs will also need to be protected against race conditions, e.g. by a mutex.]
 
 Final Thoughts
