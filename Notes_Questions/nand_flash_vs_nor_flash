@@ -34,3 +34,6 @@ but is configured as a serial connection. It uses a clock signal to keep the inc
 
 SPI NOR flash, also called serial NOR flash, has become the standard because it is a much smaller form factor with fewer connector pins, 
 but it retains the same memory density and speed as parallel NOR flash memory.
+
+Also read:
+https://www.embedded.com/flash-101-nand-flash-vs-nor-flash/
