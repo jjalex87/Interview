@@ -1,0 +1,35 @@
+ven though the boot process can be a complex sequence involving multiple steps it always starts with the same first step. 
+When the power-on reset sequence is finished and the CPU comes out of reset, the program counter is pointing to the address of the 
+reset vector (boot vector). This address contains the first instruction that will be executed by the processor. It is usually a branch 
+instruction loading the program counter with an address pointing to the start of the boot code (also referred to as startup code or 
+bootloader). This mechanism allows the code that has to be executed after reset to be located at any position within the processor’s
+address space
+
+Boot Code
+The boot code can be used to perform many different tasks and from the CPU’s point of view it’s just a standard program. 
+There is no change in the way the processor operates when the boot code is executing, it’s doing its business as usual (fetching, 
+decoding and executing instructions). It is called boot code (startup code) because it’s executed before the main() function of the 
+user’s application. In its most basic form the boot code is responsible for preparing the C run-time environment for the user’s 
+application by performing the following operations:
+
+Copying the initialized variables from ROM to RAM
+Setting all bytes from the .bss segment (it contains global and static variables without initial values) to zero.
+Setting up the processor’s stack pointer (allocating space and initialization)
+Setting up the heap
+Calling main()
+The compiler tool chain typically provides startup code written in assembly language. As the boot code is the first thing to execute,
+it is always stored in a non-volatile memory (Flash, EEPROM etc.).
+
+Aside from the operations listed above, one of the most common usage of the boot code is to load the executable binary image
+(the program)  into the processor’s memory. This is the reason for this code to be referred to as a bootloader.
+
+A bootloader can be used in different scenarios:
+
+Loading the binary image through some of the microcontroller’s peripheral interfaces (UART, USB , CAN, SPI, etc. ) and then writing it 
+to a non-volatile memory. In this case the bootloader is used for “programming/flashing” the microcontroller instead of a using a special 
+hardware and interface for that purpose (JTAG). This method is beneficial as there is no need for dedicated pins (for programming) of 
+the microcontroller to be left available in the final embedded system. Changes in the program can be made through common interfaces that
+already used in the system during normal operation.
+
+Loading the binary image from some external storage into internal fast access memory. For example the binary image can be contained in 
+external flash memory or an SD card and when the booloader is executed the image is loaded into fast executing RAM memory.
