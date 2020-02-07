@@ -1,0 +1,21 @@
+Most implementations of C memory allocation functions will store accounting information for each block, either in-line or separately.
+
+One typical way (in-line) is to actually allocate both a header and the memory you asked for, padded out to some minimum size. So for example, if you asked for 20 bytes, the system may allocate a 48-byte block:
+
+16-byte header containing size, special marker, checksum, pointers to next/previous block and so on.
+32 bytes data area (your 20 bytes padded out to a multiple of 16).
+The address then given to you is the address of the data area. Then, when you free the block, free will simply take the address you give it and, assuming you haven't stuffed up that address or the memory around it, check the accounting information immediately before it. Graphically, that would be along the lines of:
+
+ ____ The allocated block ____
+/                             \
++--------+--------------------+
+| Header | Your data area ... |
++--------+--------------------+
+          ^
+          |
+          +-- The address you are given
+Keep in mind the size of the header and the padding are totally implementation defined (actually, the entire thing is implementation-defined (a) but the in-line accounting option is a common one).
+
+The checksums and special markers that exist in the accounting information are often the cause of errors like "Memory arena corrupted" or "Double free" if you overwrite them or free them twice.
+
+The padding (to make allocation more efficient) is why you can sometimes write a little bit beyond the end of your requested space without causing problems (still, don't do that, it's undefined behaviour and, just because it works sometimes, doesn't mean it's okay to do it).
