@@ -1,0 +1,36 @@
+NOR flash memory is one of two types of nonvolatile storage technologies. NAND is the other.
+
+Nonvolatile memory does not require power to retain data.
+
+NOR and NAND use different logic gates -- the fundamental building block of digital circuits -- in each memory cell to map data. 
+Both types of flash memory were invented by Toshiba, but commercial NOR flash memory was first introduced by Intel in 1988. 
+NAND flash was introduced by Toshiba in 1989.
+
+NOR flash is faster to read than NAND flash, but it's also more expensive, and it takes longer to erase and write new data. 
+NAND has a higher storage capacity than NOR.
+
+NAND devices are accessed serially, using the same eight pins to transmit control, addressing and data. 
+NAND can write to a single memory address, doing so at eight bits -- one byte -- at a time.
+
+In contrast, older, parallel NOR flash memory supports one-byte random access, which enables machine instructions to be retrieved and 
+run directly from the chip, in the same way a traditional computer retrieves instructions directly from main memory. 
+However, NOR has to write in larger chunks of data at a time than NAND. 
+Parallel NOR flash has a static random access memory (SRAM) interface that includes enough address pins to map the entire chip, 
+enabling access to every byte stored within it.
+
+NOR flash is also more expensive to produce than NAND. That, and its random access function, mean NOR is mostly used for code execution, 
+while NAND is mostly used for data storage.
+
+NOR flash is most often used in mobile phones, scientific instruments and medical devices. 
+NAND has found a market in devices to which large files are frequently uploaded and replaced, such as MP3 players, digital cameras and 
+USB flash drives.
+
+Some devices use both NAND and NOR flash. A smartphone or tablet, for instance, may use embedded NOR to boot up the operating system and
+a removable NAND card for all its other memory or storage requirements.
+
+While NOR flash memory has traditionally been based on a parallel interface, the latest innovation is SPI NOR flash, 
+which uses a serial peripheral interface (SPI) bus. The bus communicates data synchronously like a parallel interface, 
+but is configured as a serial connection. It uses a clock signal to keep the incoming and outgoing data streams in sync.
+
+SPI NOR flash, also called serial NOR flash, has become the standard because it is a much smaller form factor with fewer connector pins, 
+but it retains the same memory density and speed as parallel NOR flash memory.
