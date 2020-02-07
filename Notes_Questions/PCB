@@ -1,0 +1,58 @@
+Sources: 
+1. https://www.includehelp.com/operating-systems/process-control-block-in-operating-system.aspx
+2. https://www.geeksforgeeks.org/process-table-and-process-control-block-pcb/
+
+Process control block (PCB) is a data structure which is associated with any process and provides all the complete information about that process. The process control block is "the manifestation of a process in an operating system". Process control block is important in multiprogramming environment as it captures the information pertaining to the number of processes running simultaneously.
+
+Role of process control block
+The role or work of process control block (PCB) in process management is that it can access or modified by most OS utilities including those are involved with memory, scheduling, and input / output resource access.It can be said that the set of the process control blocks give the information of the current state of the operating system. Data structuring for processes is often done in terms of process control blocks. For example, pointers to other process control blocks inside any process control block allows the creation of those queues of processes in various scheduling states.
+
+The following are the various information that is contained byprocess control block:
+
+Naming the process
+State of the process
+Resources allocated to the process
+Memory allocated to the process
+Scheduling information
+Input / output devices associated with process
+Components of Process control block
+The following are the various components that are associated with the process control block PCB:
+
+1. Process ID:
+In computer system there are various process running simultaneously and each process has its unique ID. This Id helps system in scheduling the processes. This Id is provided by the process control block.
+In other words, it is an identification number that uniquely identifies the processes of computer system.
+
+
+ 
+2. Process state:
+As we know that the process state of any process can be New, running, waiting, executing, blocked, suspended, terminated. For more details regarding process states you can refer process management of an Operating System.
+Process control block is used to define the process state of any process.
+In other words, process control block refers the states of the processes.
+
+3. Program counter:
+Program counter is used to point to the address of the next instruction to be executed in any process. This is also managed by the process control block.
+
+4. Register Information:
+This information is comprising with the various registers, such as index and stack that are associated with the process. This information is also managed by the process control block.
+
+
+ 
+
+ 
+
+5. Scheduling information:
+Scheduling information is used to set the priority of different processes. This is very useful information which is set by the process control block. In computer system there were many processes running simultaneously and each process have its priority. The priority of primary feature of RAM is higher than other secondary features. Scheduling information is very useful in managing any computer system.
+
+6. Memory related information:
+This section of the process control block comprises of page and segment tables. It also stores the data contained in base and limit registers.
+
+7. Accounting information:
+This section of process control block stores the details relate to central processing unit (CPU) utilization and execution time of a process.
+
+
+ 
+8. Status information related to input / output:
+This section of process control block stores the details pertaining to resource utilization and file opened during the process execution.
+
+The operating system maintains a table called process table, which stores the process control blocks related to all the processes.
+
